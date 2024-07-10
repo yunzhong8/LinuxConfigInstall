@@ -47,3 +47,6 @@ sudo apt-get nload
 
 # 安装垃圾站命令
 sudo apt-get trash-cli
+
+# 安装tree命令
+sudo apt-get tree 

@@ -49,5 +49,6 @@ zzq_shell_script_install_path=./InstallScirpts/install_zzq_scirpt.sh
 # 安装c语言库函数
 /bin/bash $package_install_script_path
 
+
 # 配置我自己编写的脚本（只启用通用性强的脚本）
 /bin/bash $zzq_shell_script_install_path
