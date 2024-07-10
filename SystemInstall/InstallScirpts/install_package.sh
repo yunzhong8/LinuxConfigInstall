@@ -40,13 +40,13 @@ done
 sudo apt-get install unzip
 
 # 按照网络工具
-sudo apt-get net-tools
+sudo apt-get install net-tools
 
 # 检查网络速度的工具
-sudo apt-get nload 
+sudo apt-get  install nload 
 
 # 安装垃圾站命令
-sudo apt-get trash-cli
+sudo apt-get install trash-cli
 
 # 安装tree命令
-sudo apt-get tree 
+sudo apt-get install tree 
