@@ -50,3 +50,6 @@ sudo apt-get install trash-cli
 
 # 安装tree命令
 sudo apt-get install tree 
+
+# 安装vim命令
+sudo apt-get vim 

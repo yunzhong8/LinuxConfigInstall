@@ -36,7 +36,7 @@ done
 #***************配置bushrc***************************
 zzq_config_name=zzq_config
 zzq_config_path="~/"+$zzq_config
-zzq_config_repo_path=""
+zzq_config_repo_path=git@github.com:yunzhong8/ZzqLinuxConfig.git
 
 sudo mkdir -p  $zzq_config_path
 
@@ -59,7 +59,6 @@ sudo chmod 755 ~/zzq_config
 
 
 # 设置bashrc中引用我的代码
-
 bashrc_add_code="# 配置文件目录
 CONFIG_DIR="$zzq_config_path"
 
@@ -82,4 +81,3 @@ if ! grep -qF "$bashrc_add_code" ~/.bashrc; then
 else
   echo "Content already exists in ~/.bashrc"
 fi
-
