@@ -82,3 +82,4 @@ fi"
 #   echo "Content already exists in ~/.bashrc"
 # fi
 echo "$bashrc_add_code" >> ~/.bashrc
+source ~/.bashrc
