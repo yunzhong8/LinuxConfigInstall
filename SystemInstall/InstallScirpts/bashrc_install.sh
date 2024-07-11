@@ -34,13 +34,13 @@ do
 done
 
 #***************配置bushrc***************************
-zzq_config_name=zzq_config
-zzq_config_path="~/"+$zzq_config
+zzq_config_name=.zzq_config
+zzq_config_path="~/.zzq_config"
 zzq_config_repo_path=git@github.com:yunzhong8/ZzqLinuxConfig.git
-rm -rf $zzq_config_path
+sudo rm -rf $zzq_config_path
 sudo mkdir -p  $zzq_config_path
 
-pushd ~ #进入用户目录
+pushd $HOME #进入用户目录
 
 # 检查pushd命令是否成功
 if [ $? -ne 0 ]; then
@@ -55,12 +55,12 @@ git clone $zzq_config_repo_path $zzq_config_name
 popd
 
 # 设置文件权限为普通用户不能删除
-sudo chmod 755 ~/zzq_config
+sudo chmod 755 $zzq_config_path
 
 
 # 设置bashrc中引用我的代码
 bashrc_add_code="# 配置文件目录
-CONFIG_DIR="$zzq_config_path"
+CONFIG_DIR=\"$zzq_config_path\"
 
 # 检查目录是否存在
 if [ -d \"\$CONFIG_DIR\" ]; then
@@ -73,11 +73,12 @@ if [ -d \"\$CONFIG_DIR\" ]; then
 fi
 fi"
 
-# 检查内容是否已经存在于 ~/.bashrc
-if ! grep -qF "$bashrc_add_code" ~/.bashrc; then
-  # 如果不存在，则将内容追加到 ~/.bashrc
-  echo "$bashrc_add_code" >> ~/.bashrc
-  echo "Content added to ~/.bashrc"
-else
-  echo "Content already exists in ~/.bashrc"
-fi
+# # 检查内容是否已经存在于 ~/.bashrc
+# if ! grep -qF "$bashrc_add_code" ~/.bashrc; then
+#   # 如果不存在，则将内容追加到 ~/.bashrc
+#   echo "$bashrc_add_code" >> ~/.bashrc
+#   echo "Content added to ~/.bashrc"
+# else
+#   echo "Content already exists in ~/.bashrc"
+# fi
+echo "$bashrc_add_code" >> ~/.bashrc
