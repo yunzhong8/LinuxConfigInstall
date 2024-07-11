@@ -52,4 +52,4 @@ sudo apt-get install trash-cli
 sudo apt-get install tree 
 
 # 安装vim命令
-sudo apt-get vim 
+sudo apt-get install vim 

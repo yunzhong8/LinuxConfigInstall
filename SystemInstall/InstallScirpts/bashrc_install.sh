@@ -37,7 +37,7 @@ done
 zzq_config_name=zzq_config
 zzq_config_path="~/"+$zzq_config
 zzq_config_repo_path=git@github.com:yunzhong8/ZzqLinuxConfig.git
-
+rm -rf $zzq_config_path
 sudo mkdir -p  $zzq_config_path
 
 pushd ~ #进入用户目录
@@ -63,11 +63,11 @@ bashrc_add_code="# 配置文件目录
 CONFIG_DIR="$zzq_config_path"
 
 # 检查目录是否存在
-if [ -d "\$CONFIG_DIR" ]; then
+if [ -d \"\$CONFIG_DIR\" ]; then
     for file in "\$CONFIG_DIR"/*.sh; do
         # 检查文件是否存在，避免目录为空时的错误
-        if [ -f "\$file" ]; then
-            source "\$file"
+        if [ -f \"\$file\" ]; then
+            source \"\$file\"
         fi
     done
 fi
