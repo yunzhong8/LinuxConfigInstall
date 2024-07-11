@@ -16,7 +16,7 @@ eg：                                                                    *
 其他信息：                                                              *
 *************************************************************************\n"
 parameter_names=(1 2 3 4 5 6) #输入参数的名称列表
-parameter_num=6  # 脚本一定需要传入的参数个数
+parameter_num=0  # 脚本一定需要传入的参数个数
 shell_script_path=/home/zzq/Code/Sheel/   # 脚本待调用的脚本的父目录
 son_script_path=makefiles  # 待调用的脚本的子目录
 call_script_path="$shell_script_path""$son_script_path"
