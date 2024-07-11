@@ -18,7 +18,7 @@ eg：                                                                    *
 parameter_names=(1 2 3 4 5 6) #输入参数的名称列表
 parameter_num=6
 #检测参数是否正确传入
-for i in $(seq 1 $parameter_names)
+for i in $(seq 1 $parameter_num)
 do
     if [ -z ${!i}  ];then # $i是空则输出
         echo "${parameter_names[$i]}:未输入，终止脚本执行"

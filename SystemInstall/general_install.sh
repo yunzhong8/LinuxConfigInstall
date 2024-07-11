@@ -23,7 +23,7 @@ call_script_path="$shell_script_path""$son_script_path"
 
 
 #检测参数是否正确传入
-for i in $(seq 1 $parameter_names)
+for i in $(seq 1 $parameter_num)
 do
     if [ -z ${!i}  ];then # $i是空则输出
         echo "${parameter_names[$i]}:未输入，终止脚本执行"
@@ -52,3 +52,4 @@ zzq_shell_script_install_path=./InstallScirpts/install_zzq_scirpt.sh
 
 # 配置我自己编写的脚本（只启用通用性强的脚本）
 /bin/bash $zzq_shell_script_install_path
+
