@@ -15,6 +15,7 @@ eg：                                                                    *
     2.                                                                  *\n
 其他信息：                                                              *
 *************************************************************************\n"
+set -x
 parameter_names=(ubuntu/wsl 2 3 4 5 6) #输入参数的名称列表
 parameter_num=1  # 脚本一定需要传入的参数个数
 shell_script_path=/home/zzq/Code/Sheel/   # 脚本待调用的脚本的父目录
@@ -41,10 +42,12 @@ zzq_ubuntu_bashrc_config_path="$zzq_config_path""/bashrc/special_bashrc/ubuntu"
 zzq_wsl_bashrc_config_path="$zzq_config_path""/bashrc/special_bashrc/wsl"
 zzq_config_repo_path="git@github.com:yunzhong8/ZzqLinuxConfig.git"
 
-chmod -R 755 "$zzq_config_path"  # 设置文件夹及其内容为普通用户可读写执行
-
-rm -rf $zzq_config_path
-mkdir -p  $zzq_config_path
+if [ -d "$zzq_config_path" ] ;then
+	echo "$zzq_config_path"" exit"
+	chmod -R 755 "$zzq_config_path"  # 设置文件夹及其内容为普通用户可读写执行
+	rm -rf "$zzq_config_path"
+fi
+#mkdir -p  $zzq_config_path
 
 pushd $HOME #进入用户目录
 

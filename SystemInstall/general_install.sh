@@ -15,8 +15,8 @@ eg：                                                                    *
     2.                                                                  *\n
 其他信息：                                                              *
 *************************************************************************\n"
-parameter_names=(1 2 3 4 5 6) #输入参数的名称列表
-parameter_num=0 # 脚本一定需要传入的参数个数
+parameter_names=(ubuntu/wsl 2 3 4 5 6) #输入参数的名称列表
+parameter_num=1 # 脚本一定需要传入的参数个数
 shell_script_path=/home/zzq/Code/Sheel/   # 脚本待调用的脚本的父目录
 son_script_path=makefiles  # 待调用的脚本的子目录
 call_script_path="$shell_script_path""$son_script_path"
@@ -40,8 +40,9 @@ package_install_script_path=./InstallScirpts/install_package.sh
 zzq_shell_script_install_path=./InstallScirpts/install_zzq_scirpt.sh
 
 #***************进行系统配置***************************
+platform=$1
 # 配置bashrc
-/bin/bash $bashrc_install_script_path
+/bin/bash $bashrc_install_script_path $platform
 
 # 安装软件包
 /bin/bash $c_lib_install_srcipt_path
@@ -51,5 +52,5 @@ zzq_shell_script_install_path=./InstallScirpts/install_zzq_scirpt.sh
 
 
 # 配置我自己编写的脚本（只启用通用性强的脚本）
-/bin/bash $zzq_shell_script_install_path
+/bin/bash $zzq_shell_script_install_path $platform
 
