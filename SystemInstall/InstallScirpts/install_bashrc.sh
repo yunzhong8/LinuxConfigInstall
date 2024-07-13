@@ -36,6 +36,8 @@ done
 #***************配置bushrc***************************
 zzq_config_name=.zzq_config
 zzq_config_path="~/.zzq_config"
+zzq_ubuntu_config_path="$zzq_config_path""/bashrc/special_bashrc/ubuntu"
+zzq_wsl_config_path="$zzq_config_path""/bashrc/special_bashrc/wsl"
 zzq_config_repo_path=git@github.com:yunzhong8/ZzqLinuxConfig.git
 sudo rm -rf $zzq_config_path
 sudo mkdir -p  $zzq_config_path
@@ -57,12 +59,25 @@ popd
 # 设置文件权限为普通用户不能删除
 sudo chmod 755 $zzq_config_path
 
+platform=$1
+
+if [ "$platform" = "ubuntu" ]; then
+	bashrc_config_code="#这是一个配置bashrc的代码
+UBUNTU_SPECIAL_CONFIG=\"true\"
+WSL_SPECIAL_CONFIG=\"false\"
+"
+else
+	bashrc_config_code="#这是一个配置bashrc的代码
+UBUNTU_SPECIAL_CONFIG=\"false\"
+WSL_SPECIAL_CONFIG=\"true\"
+"
+fi
 
 # 设置bashrc中引用我的代码
 bashrc_add_code="# 配置文件目录
 CONFIG_DIR=\"$zzq_config_path\"
 
-# 检查目录是否存在
+# 导入基本bashrc配置（所有平台通用）
 if [ -d \"\$CONFIG_DIR\" ]; then
     for file in "\$CONFIG_DIR"/*.sh; do
         # 检查文件是否存在，避免目录为空时的错误
@@ -71,7 +86,37 @@ if [ -d \"\$CONFIG_DIR\" ]; then
         fi
     done
 fi
-fi"
+
+
+#导入Ubuntu平台的bashrc配置
+if [ \"\$UBUNTU_SPECIAL_CONFIG\" = \"true\" ]; then
+	UBUNTU_CONFIG_DIR=\"$zzq_ubuntu_config_path\"
+	# 导入基本bashrc配置（所有平台通用）
+	if [ -d \"\$UBUNTU_CONFIG_DIR\" ]; then
+	    for file in "\$UBUNTU_CONFIG_DIR"/*.sh; do
+	        # 检查文件是否存在，避免目录为空时的错误
+	        if [ -f \"\$file\" ]; then
+	            source \"\$file\"
+	        fi
+	    done
+	fi
+fi
+
+
+#导入WSL平台的bashrc配置
+if [ \"\$WSL_SPECIAL_CONFIG\" = \"true\" ]; then
+	WSL_CONFIG_DIR=\"$zzq_wsl_config_path\"
+	# 导入基本bashrc配置（所有平台通用）
+	if [ -d \"\$WSL_CONFIG_DIR\" ]; then
+	    for file in "\$UBUNTU_CONFIG_DIR"/*.sh; do
+	        # 检查文件是否存在，避免目录为空时的错误
+	        if [ -f \"\$file\" ]; then
+	            source \"\$file\"
+	        fi
+	    done
+	fi
+fi
+"
 
 # # 检查内容是否已经存在于 ~/.bashrc
 # if ! grep -qF "$bashrc_add_code" ~/.bashrc; then
