@@ -15,8 +15,9 @@ eg：                                                                    *
     2.                                                                  *\n
 其他信息：                                                              *
 *************************************************************************\n"
-parameter_names=(1 2 3 4 5 6) #输入参数的名称列表
-parameter_num=0  # 脚本一定需要传入的参数个数
+set -x
+parameter_names=(ubuntu/wsl 2 3 4 5 6) #输入参数的名称列表
+parameter_num=1  # 脚本一定需要传入的参数个数
 shell_script_path=/home/zzq/Code/Sheel/   # 脚本待调用的脚本的父目录
 son_script_path=makefiles  # 待调用的脚本的子目录
 call_script_path="$shell_script_path""$son_script_path"
@@ -33,29 +34,28 @@ do
     fi
 done
 
-# 安装c语言库函数
-/bin/bash "$call_script_path/install_c_lib.sh"
+#***************配置bushrc***************************
+zzq_config_name=.zzq_config
+zzq_config_path="\${HOME}/.zzq_config"
+zzq_basic_source_config_path="$zzq_config_path""/my_source.list"
 
-# 按照zip解压工具
-sudo apt-get install unzip
+linux_source_path=/etc/apt/sources.list
 
-# 按照网络工具
-sudo apt-get install net-tools
 
-# 检查网络速度的工具
-sudo apt-get  install nload 
+# 设置/etc/apt/source.list中引用我的代码
+source_add_code="# 配置文件目录
+include $zzq_basic__config_path
+"
 
-# 安装垃圾站命令
-sudo apt-get install trash-cli
+# # 检查内容是否已经存在于 ~/.bashrc
+# if ! grep -qF "$bashrc_add_code" ~/.bashrc; then
+#   # 如果不存在，则将内容追加到 ~/.bashrc
+#   echo "$bashrc_add_code" >> ~/.bashrc
+#   echo "Content added to ~/.bashrc"
+# else
+#   echo "Content already exists in ~/.bashrc"
+# fi
 
-# 安装tree命令
-sudo apt-get install tree 
+echo "$bashrc_add_code" >> $linux_source_path
 
-# 安装vim命令
-sudo apt-get install vim
-
-# 安装curl命令
-sudo apt-get install curl
-
-# 安装pdf处理命令
-sudo apt-get install poppler-utils 
+sudo apt-get update
